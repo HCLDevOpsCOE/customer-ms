@@ -31,12 +31,12 @@ public class CustomerConsumerDrivenContractTest {
 		assertEquals(
 				1,
 				result.stream()
-						.filter(c -> (c.getName().equals("Wolff")
-								&& c.getFirstname().equals("Eberhard")
+						.filter(c -> (c.getName().equals("Messi")
+								&& c.getFirstname().equals("Lionel")
 								&& c.getEmail().equals(
-										"eberhard.wolff@gmail.com")
-								&& c.getStreet().equals("Unter den Linden") && c
-								.getCity().equals("Berlin"))).count());
+										"lionel.messi@gmail.com")
+								&& c.getStreet().equals("Barcelona Ave") && c
+								.getCity().equals("Argentina"))).count());
 	}
 
 	@Test

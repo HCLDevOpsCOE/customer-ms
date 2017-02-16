@@ -58,12 +58,12 @@ public class CustomerWebIntegrationTest {
 	@Test
 	public void IsCustomerReturnedAsHTML() {
 
-		Customer customerWolff = customerRepository.findByName("Wolff").get(0);
+		Customer customerWolff = customerRepository.findByName("Messi").get(0);
 
 		String body = getForMediaType(String.class, MediaType.TEXT_HTML,
 				customerURL() + customerWolff.getId() + ".html");
 
-		assertThat(body, containsString("Wolff"));
+		assertThat(body, containsString("Messi"));
 		assertThat(body, containsString("<div"));
 	}
 
@@ -75,32 +75,36 @@ public class CustomerWebIntegrationTest {
 	@Test
 	public void IsCustomerReturnedAsJSON() {
 
-		Customer customerWolff = customerRepository.findByName("Wolff").get(0);
+		Customer customer = customerRepository.findByName("Messi").get(0);
 
-		String url = customerURL() + "customer/" + customerWolff.getId();
+		String url = customerURL() + "customer/" + customer.getId();
 		Customer body = getForMediaType(Customer.class,
 				MediaType.APPLICATION_JSON, url);
 
-		assertThat(body, equalTo(customerWolff));
+		assertThat(body, equalTo(customer));
 	}
 
 	@Test
 	public void IsCustomerListReturned() {
 
 		Iterable<Customer> customers = customerRepository.findAll();
+		
 		assertTrue(StreamSupport.stream(customers.spliterator(), false)
-				.noneMatch(c -> (c.getName().equals("Hoeller1"))));
+				.noneMatch(c -> (c.getName().equals("Tendulkar"))));
+		
 		ResponseEntity<String> resultEntity = restTemplate.getForEntity(
 				customerURL() + "/list.html", String.class);
+		
 		assertTrue(resultEntity.getStatusCode().is2xxSuccessful());
+		
 		String customerList = resultEntity.getBody();
-		assertFalse(customerList.contains("Hoeller1"));
-		customerRepository.save(new Customer("Juergen", "Hoeller1",
-				"springjuergen@twitter.com", "Schlossallee", "Linz"));
+		assertFalse(customerList.contains("Mandela"));
+		customerRepository.save(new Customer("Mohandas", "Gandhi",
+				"mkgandhi@twitter.com", "Banaras", "Gujarat"));
 
 		customerList = restTemplate.getForObject(customerURL() + "/list.html",
 				String.class);
-		assertTrue(customerList.contains("Hoeller1"));
+		assertTrue(customerList.contains("Gandhi"));
 
 	}
 
@@ -119,17 +123,17 @@ public class CustomerWebIntegrationTest {
 	@Test
 	@Transactional
 	public void IsSubmittedCustomerSaved() {
-		assertEquals(0, customerRepository.findByName("Hoeller").size());
+		assertEquals(0, customerRepository.findByName("Gandhi").size());
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
-		map.add("firstname", "Juergen");
-		map.add("name", "Hoeller");
-		map.add("street", "Schlossallee");
-		map.add("city", "Linz");
-		map.add("email", "springjuergen@twitter.com");
+		map.add("firstname", "Mohandas");
+		map.add("name", "Gandhi");
+		map.add("street", "Banaras");
+		map.add("city", "Gujarat");
+		map.add("email", "mkgandhi@twitter.com");
 
 		restTemplate.postForObject(customerURL() + "form.html", map,
 				String.class);
-		assertEquals(1, customerRepository.findByName("Hoeller").size());
+		assertEquals(1, customerRepository.findByName("Gandhi").size());
 	}
 
 }
