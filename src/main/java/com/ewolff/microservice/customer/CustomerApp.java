@@ -22,17 +22,17 @@ public class CustomerApp {
 		this.customerRepository = customerRepository;
 	}
 
-	@PostConstruct
-	public void generateTestData() {
-		customerRepository.save(new Customer("Lionel", "Messi",
-				"lionel.messi@gmail.com", "Barcelona Ave", "Argentina"));
-		customerRepository.save(new Customer("Phunsuk", "Wangdu",
-				"phunsuk.wangdu@3idiots.com", "Leh Ave", "Leh"));
-		customerRepository.save(new Customer("Hrishikesh", "Deodhar",
-				"hr1sh1kesh.deodhar@devOpsEngineers.com", "Electronics City", "Bangalore"));
-		customerRepository.save(new Customer("Jessie", "James",
-				"Jessie.James@gmail.com", "Electronics City", "Bangalore"));
-	}
+//	@PostConstruct
+//	public void generateTestData() {
+//		customerRepository.save(new Customer("Lionel", "Messi",
+//				"lionel.messi@gmail.com", "Barcelona Ave", "Argentina"));
+//		customerRepository.save(new Customer("Phunsuk", "Wangdu",
+//				"phunsuk.wangdu@3idiots.com", "Leh Ave", "Leh"));
+//		customerRepository.save(new Customer("Hrishikesh", "Deodhar",
+//				"hr1sh1kesh.deodhar@devOpsEngineers.com", "Electronics City", "Bangalore"));
+//		customerRepository.save(new Customer("Jessie", "James",
+//				"Jessie.James@gmail.com", "Electronics City", "Bangalore"));
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(CustomerApp.class, args);
