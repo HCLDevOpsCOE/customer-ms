@@ -17,8 +17,8 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Brixton.RELEASE</spring-cloud.version>
-		<docker.image.prefix>rohitgkk</docker.image.prefix>
-              <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<docker.image.prefix>hrishi</docker.image.prefix>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencyManagement>
@@ -37,21 +37,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-    <profiles>
-        <profile>
-            <id>sonar</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <!-- Optional URL to server. Default value is http://localhost:9000 -->
-                <sonar.host.url>
-                      http://sonar55.demos.hclets.com
-                </sonar.host.url>
-            </properties>
-        </profile>
-     </profiles>
 
 	<build>
 		<plugins>
@@ -140,13 +125,12 @@
 			<artifactId>json-path</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
-<!-- 		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<scope>runtime</scope>
-		</dependency>
- -->
+	   
+	    <dependency>
+	      <groupId>com.h2database</groupId>
+	      <artifactId>h2</artifactId>
+	    </dependency>
+	   	    
 	    <dependency>
 	      <groupId>mysql</groupId>
 	      <artifactId>mysql-connector-java</artifactId>

@@ -53,4 +53,10 @@ public class CustomerApp {
 	    return config;
 	}
 	
+	@PostConstruct
+	public void setup(){
+		Customer customer = new Customer("Hrishikesh", "Deodhar", "hrishikesh.deodhar@devopsEngineers.com", "MG Road", "Bangalore");
+		customerRepository.save(customer);
+	}
+	
 }
