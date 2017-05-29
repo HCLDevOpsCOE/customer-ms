@@ -49,6 +49,7 @@
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
 						<exposes>
 							<expose>80</expose>
+							<expose>4040</expose>
 						</exposes>
 					<cmd>/usr/bin/java -Xmx400m -Xms400m -jar ${project.build.finalName}.jar</cmd>
 					<entryPoint>/usr/bin/java -Xmx400m -Xms400m -jar ${project.build.finalName}.jar</entryPoint>
